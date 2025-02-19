@@ -15,7 +15,7 @@ export const FeedbackProvieder = ({ children }) => {
     edit: false,
   });
 
-  // Item to be Added
+  // FeedbackItem to be Added
   const addFeedback = (newFeedback) => {
     newFeedback.id = uuidv4();
     setFeedback([newFeedback, ...feedback]);
@@ -28,13 +28,13 @@ export const FeedbackProvieder = ({ children }) => {
     );
   };
 
-  // Item to be deleted
+  // FeedbackItem to be deleted
   const deleteFeedback = (id) => {
     if (window.confirm('Are you sure you want to delete?'))
       setFeedback(feedback.filter((item) => item.id !== id));
   };
 
-  // Item to be Updated
+  // FeedbackItem to be Updated
   const editFeedback = (item) => {
     setFeedbackEdit({
       item,
