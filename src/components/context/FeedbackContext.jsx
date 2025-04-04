@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 
+const API_URL = 'http://localhost:5000';
+
 const FeedbackContext = createContext({});
 
 export const FeedbackProvieder = ({ children }) => {
@@ -16,7 +18,7 @@ export const FeedbackProvieder = ({ children }) => {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch('/feedback?_sort=id&_oreder=desc');
+    const response = await fetch(`${API_URL}/feedback?_sort=id&_oreder=desc`);
     const data = await response.json();
     setFeedback(data);
     setIsLoading(false);
@@ -24,7 +26,7 @@ export const FeedbackProvieder = ({ children }) => {
 
   // FeedbackItem to be Added
   const addFeedback = async (newFeedback) => {
-    const response = await fetch('/feedback?_sort=id&_oreder=desc', {
+    const response = await fetch(`${API_URL}/feedback?_sort=id&_oreder=desc`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +41,7 @@ export const FeedbackProvieder = ({ children }) => {
 
   // FeedbackItem to be upadeted
   const updateFeedback = async (id, updItem) => {
-    const response = await fetch(`/feedback/${id}`, {
+    const response = await fetch(`${API_URL}/feedback/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +59,7 @@ export const FeedbackProvieder = ({ children }) => {
   // FeedbackItem to be deleted
   const deleteFeedback = async (id) => {
     if (window.confirm('Are you sure you want to delete?'))
-      await fetch(`/feedback/${id}`, { method: 'DELETE' });
+      await fetch(`${API_URL}/feedback/${id}`, { method: 'DELETE' });
 
     setFeedback(feedback.filter((item) => item.id !== id));
   };
