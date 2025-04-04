@@ -39,7 +39,7 @@ const FeedbackForm = () => {
     if (text.trim().length > 10) {
       const newFeedback = {
         text,
-        rating,
+        rating: Number(rating),
       };
       if (feedbackEdit.edit === true) {
         updateFeedback(feedbackEdit.item.id, newFeedback);
